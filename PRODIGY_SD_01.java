@@ -26,11 +26,11 @@ class TemperatureConverter {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
         System.out.print("Enter the temperature value: ");
-        double temperature = scanner.nextDouble();
+        double temperature = s.nextDouble();
         System.out.print("Enter the unit of measurement (Celsius, Fahrenheit, Kelvin): ");
-        String unit = scanner.next().toLowerCase();
+        String unit = s.next().toLowerCase();
 
         switch (unit) {
             case "celsius":
@@ -53,6 +53,6 @@ class TemperatureConverter {
                 break;
         }
 
-        scanner.close();
+        s.close();
     }
 }
