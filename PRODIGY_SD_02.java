@@ -1,37 +1,45 @@
-import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 
-public class PRODIGY_SD_02 {
+public class GuessingGame {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner s = new Scanner(System.in); // Replaced the Scanner object with 's'
         Random random = new Random();
-
-        int lowerBound = 1;
-        int upperBound = 100;
-        int randomNumber = random.nextInt(upperBound - lowerBound + 1) + lowerBound;
-
+        int secretNumber = random.nextInt(100) + 1; // Generates a random number between 1 and 100
         int attempts = 0;
-        int userGuess;
-
+        
         System.out.println("Welcome to the Guessing Game!");
-        System.out.println(
-                "I have selected a number between " + lowerBound + " and " + upperBound + ". Try to guess it.");
-
-        do {
-            System.out.print("Enter your guess: ");
-            userGuess = scanner.nextInt();
+        System.out.println("I've picked a number between 1 and 100. Can you guess what it is?");
+        
+        while (true) {
+            System.out.print("Enter your guess (or 'exit' to quit): ");
+            String input = s.nextLine(); // Using 's' instead of 'scanner'
+            
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Thanks for playing. Goodbye!");
+                break;
+            }
+            
+            int guess;
+            try {
+                guess = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number.");
+                continue;
+            }
+            
             attempts++;
-
-            if (userGuess < randomNumber) {
+            
+            if (guess < secretNumber) {
                 System.out.println("Too low! Try again.");
-            } else if (userGuess > randomNumber) {
+            } else if (guess > secretNumber) {
                 System.out.println("Too high! Try again.");
             } else {
-                System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
+                System.out.println("Congratulations! You guessed it right in " + attempts + " attempts.");
+                break;
             }
-
-        } while (userGuess != randomNumber);
-
-        scanner.close();
+        }
+        
+        s.close(); // Closing the 's' Scanner object
     }
 }
